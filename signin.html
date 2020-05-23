@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
+    <link rel="stylesheet" href="css/style.css">
 	<!-- Javascript SDKs-->
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
 	<script src="js/amazon-cognito-auth.min.js"></script>
@@ -13,13 +13,20 @@
 
   </head>
   <body>
+      <div class="first">
+  <h1>Welcome to Health Aware</h1>
+    </div>
+      
     <form>
-      <h1>Please sign in</h1>
-
-      <input type="text" id="inputUsername"  placeholder="Email address" name="username" required autofocus>
-      <input type="password" id="inputPassword"  placeholder="Password" name="password" required>    
-      <button type="button" onclick="signInButton()">Sign in</button>
-
+      <h2>Please enter your login credentials:</h2>
+     <div class="container">
+      <input class="form-control" type="text" id="inputUsername"  placeholder="Email address" name="username" required autofocus>
+      <br>
+      <input class="form-control" type="password" id="inputPassword" placeholder="Password" name="password" required>
+      <br>
+      <button class="btnRegister" type="button" onclick="signInButton()">Sign in</button>
+      <a href="index.html"><button id="returntohome" class="btnRegister" type="button">Return to Home</button>
+     </div>
     </form>
 
 

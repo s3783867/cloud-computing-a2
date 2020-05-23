@@ -2,18 +2,22 @@
 <html class="no-js" lang="">
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Health Aware</title>
-
-  <link rel="stylesheet" href="css/style.css">
+    
   <!--Cognito JavaScript-->
   <script src="js/amazon-cognito-identity.min.js"></script>  
   <script src="js/config.js"></script>
 
 </head>
 <body>
-  <p>Your Profile:</p>
+    <div class="first">
+  <h1>Welcome to Health Aware</h1>
+    </div>
+  <div class="container"></div>
+    
         <body>
         <div class="container">
             <div>
@@ -23,7 +27,7 @@
             </div>
         
         <div>
-          <h4>Personal Information</h4>
+          <h3>Personal Information</h3>
           <br>
           </div>
           <body>
@@ -34,7 +38,12 @@
 
                 <input type="hidden" id="email" readonly>
                 <!-- set button onClick method to call function we defined passing input values as parameters -->
+                
+                <br>
+                <br>
+                <div class="container">
                 <button type="button" onclick="callAPI(document.getElementById('email').value)">View Information</button>
+                </div>
             </form>
             <p id = "name">Hi</p>
         </body>

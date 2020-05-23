@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
 	<!-- Javascript SDK-->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
   <script src="js/amazon-cognito-auth.min.js"></script>
@@ -13,15 +14,23 @@
 
 	
   <body>
-
-    <h1 class="h3 mb-3 font-weight-normal" id="titleheader">Register an Account</h1>
-	
+<div class="first">
+  <h1>Welcome to Health Aware</h1>
+    </div>
+      
+    <h2>Register an Account</h2>
+	<div class="container">
 	<input type="personalname" class="form-control" id="personalnameRegister" placeholder="Name" pattern=".*" required>
+    <br>
     <input type="email" class="form-control" id="emailInputRegister" placeholder="Email" pattern=".*" required>
+    <br>
 	<input type="password" class="form-control" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
+    <br>
     <input type="password" class="form-control" id="confirmationpassword" placeholder="Confirm Password" pattern=".*" required>
-	<button id="mainbutton" class="btn btn-lg btn-primary btn-block" type="button" onclick="registerButton()" >Register</button>
-
+    <br>
+	<button id="mainbutton" class="btn btn-lg btn-primary btn-block" type="button" onclick="registerButton()" >Sign Up</button>
+    <a href="index.html"><button id="returntohome" class="btnRegister" type="button">Return to Home</button></a>
+      </div>
 	<script>
 
 		var username;
