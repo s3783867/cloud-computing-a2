@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	 <!--Cognito JavaScript-->
+	<script src="js/amazon-cognito-identity.min.js"></script>  
+	<script src="js/config.js"></script>
+  </head>
+
+  <body>
+	<div class="container">
+      <div>
+        <h2>User Health Aware Calculator</h2>
+    <button type="button" onclick="profile()">Profile</button>
+		<button type="button" onclick="signOut()">Sign out</button>
+      </div>
+	
+	<div>
+		<h4>Personal Information:</h4>
+		<br>
+    </div>
+    <body>
+      <form>
+          <label>Email:</label>
+          <input type="text" id="email" readonly required><br>
+          <label>First Name :</label>
+          <input type="text" id="fName" required><br>
+          <label>Last Name :</label>
+          <input type="text" id="lName" required><br>
+          <label>Your Weight(KG) :</label>
+          <input type="text" id="weight" required><br>
+          <label>Your Height(m) :</label>
+          <input type="text" id="height" required><br>
+          <label>How often do you exercise?</label>
+          <select id="exercise">
+            <option value="1">Never</option>
+            <option value="2">Rarely</option>
+            <option value="3">Occasionally</option>
+            <option value="4">Frequently</option>
+            <option value="5">Daily</option>
+          </select><br>
+          <label>How good is your diet out of 5?</label>
+          <select id="diet">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select><br>
+          <label>How many hours of sleep do you usually get a night?</label>
+          <select id="sleep">
+            <option value="1">Less then 4</option>
+            <option value="2">4 to 6</option>
+            <option value="5">7 to 9</option>
+            <option value="3">10 to 12</option>
+            <option value="2">More then 13</option>
+          </select><br>
+          <label>Are you a smoker?</label>
+          <select id="smoker">
+            <option value="1">Yes</option>
+            <option value="5">No</option>
+          </select><br>
+
+
+          <!-- set button onClick method to call function we defined passing input values as parameters -->
+          <button type="button" onclick="callAPI(document.getElementById('email').value,
+                                                  document.getElementById('fName').value,
+                                                  document.getElementById('lName').value,
+                                                  document.getElementById('weight').value,
+                                                  document.getElementById('height').value,
+                                                  document.getElementById('exercise').value,
+                                                  document.getElementById('diet').value,
+                                                  document.getElementById('sleep').value,
+                                                  document.getElementById('smoker').value)">Call API</button>
+      </form>
+  </body>
+    <script>
+	var data = { 
+		UserPoolId : _config.cognito.userPoolId,
+        ClientId : _config.cognito.clientId
+    };
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(data);
+    var cognitoUser = userPool.getCurrentUser();
+    
+	window.onload = function(){
+    if (cognitoUser != null) {
+        cognitoUser.getSession(function(err, session) {
+            if (err) {
+                alert(err);
+                return;
+            }
+            console.log('session validity: ' + session.isValid());
+			//Set the profile info
+			cognitoUser.getUserAttributes(function(err, result) {
+				if (err) {
+					console.log(err);
+					return;
+				}
+				console.log(result);
+				document.getElementById("email").value = result[2].getValue();
+			});			
+			
+        });
+    } else{
+      alert("You are not signed in");
+      window.location.href = "index.html";
+      
+    }
+}
+	function signOut(){
+	    if (cognitoUser != null) {
+          cognitoUser.signOut();
+          window.location.href = "index.html";
+        }
+  }
+  
+  function profile(){
+    if(cognitoUser !=null){
+      window.location.href = "profile.html";
+    }
+  }
+  
+  // define the callAPI function that takes a email, first name and last name as parameters
+  var callAPI = (email,firstName,lastName,weight,height,exercise,diet,sleep,smoker)=>{
+        // instantiate a headers object
+        var myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        var raw = JSON.stringify({"email":email,
+                                  "firstName":firstName,
+                                  "lastName":lastName,
+                                  "weight": weight,
+                                  "height": height,
+                                  "exercise": exercise,
+                                  "diet": diet,
+                                  "sleep": sleep,
+                                  "smoker": smoker});
+        // create a JSON object with parameters for API call and store in a variable
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        // make API call with parameters and use promises to get response
+        fetch("https://zvcvrsm4n2.execute-api.us-east-1.amazonaws.com/User", requestOptions)
+        .then(response => response.text())
+        .then(result => alert(JSON.parse(result).body))
+        .catch(error => console.log('error', error));
+    }
+
+    </script>
+  </body>
+</html>
