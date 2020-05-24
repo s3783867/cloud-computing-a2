@@ -45,7 +45,7 @@
                 <button type="button" onclick="callAPI(document.getElementById('email').value)">View Information</button>
                 </div>
             </form>
-            <p id = "name">Hi</p>
+            <p id = "info"></p>
         </body>
           <script>
         var data = { 
@@ -112,7 +112,7 @@
               // make API call with parameters and use promises to get response
               fetch("https://le543li0vj.execute-api.us-east-1.amazonaws.com/getUserData", requestOptions)
               .then(response => response.text())
-              .then(result => document.getElementById("name").innerHTML = (JSON.parse(result).body))
+              .then(result => document.getElementById("info").innerHTML = (JSON.parse(result).body))
               .catch(error => console.log('error', error));
           }
       
