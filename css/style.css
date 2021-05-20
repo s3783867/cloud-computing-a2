@@ -1,0 +1,120 @@
+h1 {
+    font-family: "helvetica";
+    color: white;
+    font-size: 60px;
+    margin: 0px;
+    padding: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-family: "helvetica";
+    color: dimgray;
+    font-size: 40px;
+    margin: 30px;
+    padding: 0px;
+    text-align: center;
+}
+
+h3 {
+    font-family: "helvetica";
+    color: dimgray;
+    font-size: 40px;
+    margin: 30px;
+    padding: 0px;
+    text-align: center;
+}
+
+body {
+    background-color: whitesmoke;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.container {
+    text-align: center;
+}
+
+button {
+    position: relative;
+}
+
+button {
+    background: none;
+    color: rgb(0, 172, 230, 0.6);
+    width: 240px;
+    height: 80px;
+    border: 1px solid rgb(0, 172, 230, 0.6);
+    font-size: 18px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+
+div.first{
+    background: rgba(0, 172, 230, 0.6);
+}
+
+button:focus {
+    outline: none;
+}
+
+button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgb(0, 172, 230, 0.6);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(0, 172, 230, 0.6);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+
+button:hover {
+    background: rgb(0, 172, 230, 0.6);
+    cursor: pointer;
+}
+
+button:hover:before {
+    transform: translate(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
+}
+
+button:hover:after {
+    transform: translate(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
+
+.form-control {
+    margin: 10px;
+    width: 500px;
+}
+
+.btnRegister {
+    margin: 20px;
+}
+
+.user {
+    font-family: "helvetica";
+    color: dimgray;
+    font-size: 20px;
+}
